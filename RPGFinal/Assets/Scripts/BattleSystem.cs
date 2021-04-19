@@ -39,7 +39,7 @@ public class BattleSystem : MonoBehaviour
 		GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 		enemyUnit = enemyGO.GetComponent<Unit>();
 
-		dialogueText.text = "A wild " + enemyUnit.unitName + " approaches...";
+		dialogueText.text = "A " + enemyUnit.unitName + " attacks!";
 
 		playerHUD.SetHUD(playerUnit);
 		enemyHUD.SetHUD(enemyUnit);
@@ -101,7 +101,7 @@ public class BattleSystem : MonoBehaviour
 			dialogueText.text = "You won the battle!";
 		} else if (state == BattleState.LOST)
 		{
-			dialogueText.text = "You were defeated.";
+			dialogueText.text = "You died.";
 		}
 	}
 
@@ -115,7 +115,7 @@ public class BattleSystem : MonoBehaviour
 		playerUnit.Heal(5);
 
 		playerHUD.SetHP(playerUnit.currentHP);
-		dialogueText.text = "You feel renewed strength!";
+		dialogueText.text = "You drink the potion and feel better!";
 
 		yield return new WaitForSeconds(2f);
 
