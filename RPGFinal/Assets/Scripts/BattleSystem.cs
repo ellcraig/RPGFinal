@@ -55,7 +55,7 @@ public class BattleSystem : MonoBehaviour
 		bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
 		enemyHUD.SetHP(enemyUnit.currentHP);
-		dialogueText.text = "The attack is successful!";
+		dialogueText.text = "You Attack!";
 
 		yield return new WaitForSeconds(2f);
 
@@ -112,7 +112,7 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator PlayerHeal()
 	{
-		playerUnit.Heal(5);
+		playerUnit.Heal(15);
 
 		playerHUD.SetHP(playerUnit.currentHP);
 		dialogueText.text = "You drink the potion and feel better!";
@@ -123,12 +123,13 @@ public class BattleSystem : MonoBehaviour
 		StartCoroutine(EnemyTurn());
 	}
 
-	public void OnAttackButton()
+		public void OnAttackButton()
 	{
+		if (state != BattleState.PLAYERTURN)
+			return;
 
 		StartCoroutine(PlayerAttack());
 	}
-
 	public void OnHealButton()
 	{
 		if (state != BattleState.PLAYERTURN)
